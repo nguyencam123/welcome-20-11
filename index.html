@@ -1,353 +1,536 @@
 <!DOCTYPE html>
 <html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chào mừng Ngày Nhà Giáo Việt Nam 20-11</title>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chúc mừng Ngày Nhà giáo Việt Nam</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
+      body {
+        width: 100%;
+        min-height: 100vh;
+        background: linear-gradient(135deg, #4a5f5f 0%, #5a7f7f 100%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: "Arial", sans-serif;
+        overflow-x: hidden;
+        padding: 20px;
+      }
+
+      .container {
+        position: relative;
+        width: 100%;
+        max-width: 1200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      .background-flowers {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      .flower {
+        position: absolute;
+        font-size: clamp(2rem, 5vw, 3rem);
+        opacity: 0.4;
+        animation: floatFlower 6s ease-in-out infinite;
+      }
+
+      .flower-1 {
+        top: 10%;
+        right: 10%;
+        animation-delay: 0s;
+      }
+
+      .flower-2 {
+        bottom: 15%;
+        right: 8%;
+        animation-delay: 1s;
+      }
+
+      .flower-3 {
+        top: 20%;
+        left: 8%;
+        animation-delay: 2s;
+      }
+
+      @keyframes floatFlower {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(20px);
+        }
+      }
+
+      .content {
+        text-align: center;
+        z-index: 10;
+        position: relative;
+      }
+
+      .title {
+        font-size: clamp(1.5rem, 6vw, 2.5rem);
+        color: #f5d89f;
+        margin-bottom: clamp(1.5rem, 5vw, 3rem);
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        font-style: italic;
+        letter-spacing: 2px;
+        opacity: 1;
+        transition: opacity 0.8s ease;
+      }
+
+      .title.hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .book-container {
+        position: relative;
+        width: clamp(250px, 80vw, 300px);
+        height: clamp(350px, 120vw, 420px);
+        margin: 0 auto clamp(1rem, 3vw, 2rem);
+        perspective: 1200px;
+        cursor: pointer;
+      }
+
+      .book {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        transform-style: preserve-3d;
+        transition: transform 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      }
+
+      .cover {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        background: linear-gradient(
+          135deg,
+          #d84a2a 0%,
+          #e85a3a 50%,
+          #d84a2a 100%
+        );
+        border: 4px solid #a03a1a;
+        border-radius: 5px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5),
+          inset -3px 0 15px rgba(0, 0, 0, 0.3),
+          inset 3px 0 10px rgba(255, 255, 255, 0.1);
+        z-index: 10;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transform-style: preserve-3d;
+        transition: all 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        transform-origin: left center;
+        padding: clamp(15px, 4vw, 20px);
+      }
+
+      .cover.opening {
+        transform: rotateY(-170deg);
+        z-index: 1;
+      }
+
+      .cover-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: clamp(1rem, 3vw, 1.5rem);
+      }
+
+      .cover-title {
+        font-size: clamp(1.2rem, 4vw, 1.8rem);
+        color: #fff;
+        font-style: italic;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+        text-align: center;
+        font-weight: bold;
+      }
+
+      .cover-flower {
+        font-size: clamp(2.5rem, 8vw, 4rem);
+        opacity: 0.95;
+      }
+
+      .bookmark {
+        position: absolute;
+        right: -15px;
+        top: 20px;
+        width: 40px;
+        height: 80px;
+        background: linear-gradient(90deg, #ffd700 0%, #ffed4e 100%);
+        border-radius: 0 0 5px 5px;
+        box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.2);
+      }
+
+      .pages-wrapper {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        gap: 0;
+        perspective: 1000px;
+      }
+
+      .page {
+        flex: 1;
+        background: #faf8f3;
+        border: 3px solid #c9a87c;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: clamp(20px, 5vw, 40px) clamp(15px, 4vw, 30px);
+        position: relative;
+        box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.05);
+      }
+
+      .page-left {
+        border-radius: 20px 0 0 20px;
+        border-right: none;
+        background: linear-gradient(to right, #faf8f3 0%, #f5f1e8 100%);
+        box-shadow: inset 5px 0 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .page-right {
+        border-radius: 0 20px 20px 0;
+        border-left: none;
+        background: linear-gradient(to left, #faf8f3 0%, #f5f1e8 100%);
+        box-shadow: inset -5px 0 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .pages-wrapper.hidden {
+        display: none;
+      }
+
+      .pages-wrapper.show {
+        display: flex;
+      }
+
+      .page-content {
+        text-align: center;
+        color: #333;
+      }
+
+      .flower-decoration {
+        font-size: clamp(2.5rem, 7vw, 3.5rem);
+        opacity: 0.95;
+        margin-bottom: clamp(1rem, 3vw, 1.5rem);
+      }
+
+      .page-text {
+        font-size: clamp(0.8rem, 2vw, 1rem);
+        line-height: 1.9;
+        color: #2a2a2a;
+        font-weight: 500;
+      }
+
+      .page-text-line {
+        margin-bottom: 1rem;
+      }
+
+      .spine {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 15px;
+        height: 100%;
+        background: linear-gradient(
+          to right,
+          #8b7355 0%,
+          #a89968 50%,
+          #8b7355 100%
+        );
+        box-shadow: inset -2px 0 8px rgba(0, 0, 0, 0.3),
+          inset 2px 0 8px rgba(255, 255, 255, 0.1);
+      }
+
+      .message-box {
+        font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+        color: #d4c5a0;
+        line-height: 1.8;
+        max-width: 650px;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        margin-top: clamp(1rem, 3vw, 2rem);
+        opacity: 0;
+        transition: opacity 1s ease 1.8s;
+        pointer-events: none;
+        padding: 0 20px;
+      }
+
+      .message-box.show {
+        opacity: 1;
+      }
+
+      .message-box p {
+        margin-bottom: 0.5rem;
+      }
+
+      .click-hint {
+        position: absolute;
+        bottom: 30px;
+        font-size: clamp(0.8rem, 2vw, 1rem);
+        color: #f5d89f;
+        opacity: 0.7;
+        left: 15px;
+        animation: pulse 2s ease-in-out infinite;
+        pointer-events: none;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 0.5;
+        }
+        50% {
+          opacity: 1;
+        }
+      }
+
+      /* HIỆU ỨNG PHÁO HOA */
+      .fireworks-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 100;
+      }
+
+      .firework {
+        position: absolute;
+        pointer-events: none;
+      }
+
+      .particle {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        pointer-events: none;
+      }
+
+      @keyframes explode {
+        to {
+          transform: translate(var(--tx), var(--ty));
+          opacity: 0;
+        }
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
         body {
-            font-family: 'Quicksand', sans-serif;
-            background: linear-gradient(135deg, #FFF5E6 0%, #FFE4CC 100%);
-            color: #333;
-            overflow-x: hidden;
+          min-height: 100vh;
+          padding: 15px;
         }
 
-        /* Vật thể trang trí floating */
-        .floating-shapes {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-            z-index: 1;
+        .flower {
+          font-size: clamp(1.5rem, 4vw, 2.5rem);
         }
 
-        .shape {
-            position: absolute;
-            opacity: 0.15;
+        .book-container {
+          margin-bottom: clamp(1rem, 5vw, 2rem);
         }
 
-        .shape1 {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #FF9A56, #FFB84D);
-            border-radius: 20px;
-            top: 10%;
-            left: 10%;
-            animation: float1 6s ease-in-out infinite;
+        .click-hint {
+          bottom: 20px;
+          left: 10px;
+          font-size: 0.85rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .title {
+          margin-bottom: clamp(1rem, 4vw, 2rem);
         }
 
-        .shape2 {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #FFD93D, #FFC145);
-            border-radius: 50%;
-            top: 60%;
-            right: 15%;
-            animation: float2 7s ease-in-out infinite;
+        .page-text {
+          font-size: 0.85rem;
+          line-height: 1.7;
         }
 
-        .shape3 {
-            width: 100px;
-            height: 100px;
-            background: linear-gradient(135deg, #FF8C69, #FF6B6B);
-            border-radius: 30px;
-            bottom: 15%;
-            left: 20%;
-            animation: float3 8s ease-in-out infinite;
+        .message-box {
+          font-size: 0.95rem;
         }
-
-        .shape4 {
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(135deg, #FFBE76, #FFA94D);
-            border-radius: 50%;
-            top: 30%;
-            right: 25%;
-            animation: float1 5s ease-in-out infinite;
-        }
-
-        @keyframes float1 {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            50% { transform: translate(20px, -20px) rotate(180deg); }
-        }
-
-        @keyframes float2 {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            50% { transform: translate(-25px, 25px) rotate(-180deg); }
-        }
-
-        @keyframes float3 {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            50% { transform: translate(15px, 15px) rotate(90deg); }
-        }
-
-        /* Container chính */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            position: relative;
-            z-index: 2;
-        }
-
-        /* Section chung */
-        section {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 80px 0;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-
-        section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .section-content {
-            text-align: center;
-            max-width: 800px;
-        }
-
-        /* Tiêu đề */
-        h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            color: #FF6B35;
-            margin-bottom: 30px;
-            line-height: 1.2;
-            text-shadow: 2px 2px 4px rgba(255, 107, 53, 0.1);
-        }
-
-        h2 {
-            font-size: 2.8rem;
-            font-weight: 600;
-            color: #FF8C42;
-            margin-bottom: 25px;
-            line-height: 1.3;
-        }
-
-        /* Văn bản */
-        p {
-            font-size: 1.3rem;
-            line-height: 1.8;
-            color: #555;
-            margin-bottom: 20px;
-        }
-
-        /* Icon trang trí */
-        .icon-decoration {
-            font-size: 4rem;
-            margin-bottom: 20px;
-            display: inline-block;
-            animation: bounce 2s ease-in-out infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        /* Card trang trí */
-        .decorative-card {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            border-radius: 30px;
-            padding: 50px;
-            box-shadow: 0 20px 60px rgba(255, 107, 53, 0.15);
-            border: 2px solid rgba(255, 139, 66, 0.2);
-        }
-
-        /* Hiệu ứng highlight */
-        .highlight {
-            color: #FF6B35;
-            font-weight: 600;
-            position: relative;
-            display: inline-block;
-        }
-
-        .highlight::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 8px;
-            background: linear-gradient(90deg, #FFD93D, #FF6B35);
-            opacity: 0.3;
-            border-radius: 4px;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.2rem;
-            }
-
-            h2 {
-                font-size: 1.8rem;
-            }
-
-            p {
-                font-size: 1.1rem;
-            }
-
-            .decorative-card {
-                padding: 30px 20px;
-            }
-
-            section {
-                min-height: auto;
-                padding: 60px 0;
-            }
-
-            .shape {
-                display: none;
-            }
-        }
-
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 1.8rem;
-            }
-
-            h2 {
-                font-size: 1.5rem;
-            }
-
-            p {
-                font-size: 1rem;
-            }
-
-            .icon-decoration {
-                font-size: 3rem;
-            }
-        }
-
-        /* Scroll indicator */
-        .scroll-indicator {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 10;
-            animation: bounce 2s ease-in-out infinite;
-            opacity: 0.6;
-        }
-
-        .scroll-indicator::before {
-            content: '↓';
-            font-size: 2rem;
-            color: #FF6B35;
-        }
+      }
     </style>
-</head>
-<body>
-    <!-- Vật thể trang trí floating -->
-    <div class="floating-shapes">
-        <div class="shape shape1"></div>
-        <div class="shape shape2"></div>
-        <div class="shape shape3"></div>
-        <div class="shape shape4"></div>
+  </head>
+  <body>
+    <div class="background-flowers">
+      <div class="flower flower-1">🌼</div>
+      <div class="flower flower-2">🌼</div>
+      <div class="flower flower-3">🌼</div>
     </div>
 
-    <!-- Section 1: Tiêu đề chính -->
-    <section id="section1">
-        <div class="container">
-            <div class="section-content">
-                <div class="icon-decoration">🎓</div>
-                <h1>Chào mừng Ngày Nhà Giáo Việt Nam<br><span class="highlight">20 - 11</span></h1>
-                <p>Kính gửi quý Thầy Cô,</p>
-                <p>Nhân dịp kỷ niệm Ngày Nhà Giáo Việt Nam 20-11, chúng em xin gửi đến Thầy Cô lời chúc sức khỏe, hạnh phúc và thành công. Thầy Cô là ngọn đèn soi đường, là người dẫn lối cho chúng em trên con đường chinh phục tri thức và trưởng thành.</p>
-            </div>
-        </div>
-    </section>
+    <div class="fireworks-container" id="fireworksContainer"></div>
 
-    <!-- Section 2: Lời tri ân -->
-    <section id="section2">
-        <div class="container">
-            <div class="section-content decorative-card">
-                <div class="icon-decoration">🌸</div>
-                <h2>Lời Tri Ân Thầy Cô</h2>
-                <p>Những bài học Thầy Cô truyền đạt không chỉ là kiến thức sách vở, mà còn là <span class="highlight">bài học cuộc sống</span>, là tình yêu thương, sự kiên nhẫn và niềm đam mê với nghề.</p>
-                <p>Chúng em biết ơn vì mỗi giờ giảng, mỗi lời khuyên, mỗi nụ cười động viên của Thầy Cô. Những điều đó đã và đang góp phần tạo nên con người chúng em ngày hôm nay.</p>
-                <p>Xin chân thành cảm ơn Thầy Cô!</p>
-            </div>
-        </div>
-    </section>
+    <div class="container">
+      <div class="content">
+        <div class="title">Chúc mừng<br />Ngày nhà giáo Việt Nam</div>
 
-    <!-- Section 3: Lời chúc -->
-    <section id="section3">
-        <div class="container">
-            <div class="section-content">
-                <div class="icon-decoration">💐</div>
-                <h2>Chúc Mừng 20-11!</h2>
-                <p>Chúng em chúc Thầy Cô luôn tràn đầy <span class="highlight">sức khỏe</span>, <span class="highlight">niềm vui</span> và <span class="highlight">hạnh phúc</span>. Mong rằng Thầy Cô sẽ tiếp tục cống hiến và truyền cảm hứng cho nhiều thế hệ học trò sau này.</p>
-                <p style="font-size: 1.5rem; font-weight: 600; color: #FF6B35; margin-top: 40px;">
-                    "Không có gì quý hơn độc lập tự do,<br>
-                    Không có gì cao quý hơn nghề dạy học!"
-                </p>
-                <p style="margin-top: 30px; font-style: italic;">Kính chúc Thầy Cô ngày 20-11 thật ý nghĩa! 🎉</p>
+        <div class="book-container" id="bookContainer">
+          <div class="book" id="book">
+            <div class="cover" id="cover">
+              <div class="bookmark"></div>
+              <div id="cover-content" class="cover-content">
+                <div class="cover-flower">📖</div>
+                <div class="cover-title">
+                  Chúc mừng<br />
+                  Ngày nhà giáo<br />
+                  Việt Nam
+                </div>
+              </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Scroll indicator -->
-    <div class="scroll-indicator" id="scrollIndicator"></div>
+            <div class="pages-wrapper hidden" id="pagesWrapper">
+              <div class="page page-right">
+                <div class="page-content">
+                  <div class="flower-decoration">✨</div>
+                  <div class="page-text">
+                    <div class="page-text-line">
+                      Ngày 20/11, chúc thầy có mai
+                    </div>
+                    <div class="page-text-line">
+                      là ngọn hải đăng chỉ đường,
+                    </div>
+                    <div class="page-text-line">
+                      dẫn lối, soi sáng con đường
+                    </div>
+                    <div class="page-text-line">của chúng em, mai là những</div>
+                    <div class="page-text-line">người lái đò dưa chúng em</div>
+                    <div class="page-text-line">
+                      đến với bến bờ của trí thức.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="click-hint">Nhấn vào bìa sách</div>
+        </div>
+
+        <div class="message-box" id="messageBox">
+          <p>
+            💝 Kính chúc thầy/cô một ngày 20/11 thật tươi vui, sức khỏe dồi dào
+            và tràn đầy hạnh phúc! 💝
+          </p>
+        </div>
+      </div>
+    </div>
 
     <script>
-        // Hiệu ứng scroll reveal
-        function revealOnScroll() {
-            const sections = document.querySelectorAll('section');
-            const windowHeight = window.innerHeight;
-            
-            sections.forEach(section => {
-                const sectionTop = section.getBoundingClientRect().top;
-                const revealPoint = 150;
-                
-                if (sectionTop < windowHeight - revealPoint) {
-                    section.classList.add('visible');
-                }
-            });
+      const bookContainer = document.getElementById("bookContainer");
+      const cover = document.getElementById("cover");
+      const pagesWrapper = document.getElementById("pagesWrapper");
+      const title = document.querySelector(".title");
+      const messageBox = document.getElementById("messageBox");
+      const coverContent = document.getElementById("cover-content");
+      const clickHint = document.querySelector(".click-hint");
+      const fireworksContainer = document.getElementById("fireworksContainer");
 
-            // Ẩn scroll indicator khi cuộn xuống
-            const scrollIndicator = document.getElementById('scrollIndicator');
-            if (window.scrollY > 100) {
-                scrollIndicator.style.opacity = '0';
-            } else {
-                scrollIndicator.style.opacity = '0.6';
-            }
+      let isOpened = false;
+
+      // Hàm tạo pháo hoa
+      function createFirework(x, y) {
+        const colors = [
+          "#FF1461",
+          "#18FF92",
+          "#5A87FF",
+          "#FBF38C",
+          "#FF006E",
+          "#FFB238",
+          "#FF9500",
+          "#FF00FF",
+          "#00FF00",
+          "#FF6B9D",
+        ];
+
+        const particleCount = 50;
+        for (let i = 0; i < particleCount; i++) {
+          const angle = (i / particleCount) * Math.PI * 2;
+          const velocity = 3 + Math.random() * 8;
+          const tx = Math.cos(angle) * velocity * 80;
+          const ty = Math.sin(angle) * velocity * 80;
+
+          const particle = document.createElement("div");
+          particle.className = "particle";
+          particle.style.left = x + "px";
+          particle.style.top = y + "px";
+          particle.style.background =
+            colors[Math.floor(Math.random() * colors.length)];
+          particle.style.setProperty("--tx", tx + "px");
+          particle.style.setProperty("--ty", ty + "px");
+          particle.style.animation = `explode ${
+            0.8 + Math.random() * 0.5
+          }s ease-out forwards`;
+          particle.style.boxShadow = `0 0 ${5 + Math.random() * 10}px ${
+            particle.style.background
+          }`;
+
+          fireworksContainer.appendChild(particle);
+
+          setTimeout(() => particle.remove(), 1300);
         }
+      }
 
-        // Gọi hàm khi tải trang
-        window.addEventListener('load', () => {
-            revealOnScroll();
-        });
+      // Tạo pháo hoa khi mở sách
+      function triggerFireworks() {
+        const fireworkCount = 5;
+        for (let i = 0; i < fireworkCount; i++) {
+          setTimeout(() => {
+            const x = Math.random() * window.innerWidth;
+            const y = Math.random() * (window.innerHeight * 0.6);
+            createFirework(x, y);
+          }, i * 200);
+        }
+      }
 
-        // Gọi hàm khi scroll
-        window.addEventListener('scroll', () => {
-            revealOnScroll();
-        });
+      bookContainer.addEventListener("click", function () {
+        if (!isOpened) {
+          isOpened = true;
+          cover.classList.add("opening");
+          pagesWrapper.classList.remove("hidden");
+          pagesWrapper.classList.add("show");
+          title.classList.add("hidden");
+          clickHint.style.display = "none";
+          coverContent.style.display = "none";
 
-        // Smooth scroll khi click vào scroll indicator
-        document.getElementById('scrollIndicator').addEventListener('click', () => {
-            window.scrollTo({
-                top: window.innerHeight,
-                behavior: 'smooth'
-            });
-        });
+          // Bắn pháo hoa
+          triggerFireworks();
+
+          setTimeout(() => {
+            messageBox.classList.add("show");
+            triggerFireworks();
+          }, 1800);
+        }
+      });
+
+      // Tự động bắn pháo hoa khi tải trang
+      setTimeout(() => {
+        triggerFireworks();
+      }, 2000);
     </script>
-</body>
+  </body>
 </html>
